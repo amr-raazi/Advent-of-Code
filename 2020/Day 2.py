@@ -1005,7 +1005,7 @@ c = 0
 for line in inp:
     line = line.split(" ")
     lower_bound, upper_bound, = line[0].split("-")
-    letter = line[1].replace(":", "")
+    letter = line[1][0]
     password = line[2]
     count_of_letter = list(password).count(letter)
     if int(lower_bound) <= count_of_letter <= int(upper_bound):
@@ -1018,11 +1018,9 @@ for line in inp:
     line = line.split(" ")
     lower_bound, upper_bound, = line[0].split("-")
     lower_bound, upper_bound = int(lower_bound), int(upper_bound)
-    letter = line[1].replace(":", "")
+    letter = line[1][0]
     password = line[2]
     count_of_letter = list(password).count(letter)
-    if password[lower_bound - 1] == password[upper_bound - 1]:
-        continue
-    if password[lower_bound - 1] == letter or password[upper_bound - 1] == letter:
+    if bool(password[lower_bound - 1] == letter) ^ bool(password[upper_bound - 1] == letter):
         c += 1
 print(c)

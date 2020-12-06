@@ -1197,8 +1197,6 @@ def value_validator(passport: dict):
     return True
 
 
-
-
 def convert_to_dict(passport: str):
     y = []
     passport = passport.replace("\n", " ")

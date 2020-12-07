@@ -2120,33 +2120,21 @@ epnxvgr
 ywepngvu
 """.split("\n\n")
 
-# part 1
-c = 0
-for group in inp:
-    group = group.splitlines()
-    list_of_unique_questions = []
-    for person in group:
-        for question in person:
-            if question not in list_of_unique_questions:
-                list_of_unique_questions.append(question)
-    c += len(list_of_unique_questions)
-print(c)
-
-# part 2
-c = 0
+# part 1 and 2
 import string
+
+any_count, all_count = 0, 0
 
 for group in inp:
     persons = group.splitlines()
-    list_of_questions = []
+    group_count_any, group_count_all = 0, 0
     for letter in string.ascii_lowercase:
-        continue_letter_loop = False
-        for person in persons:
-            if letter not in person:
-                continue_letter_loop = True
-                break
-        if continue_letter_loop:
-            continue
-        list_of_questions.append(letter)
-    c += len(list_of_questions)
-print(c)
+        letter_in_person = [(letter in person) for person in persons]
+        if any(letter_in_person):
+            group_count_any += 1
+        if all(letter_in_person):
+            group_count_all += 1
+    any_count += group_count_any
+    all_count += group_count_all
+print(any_count)
+print(all_count)
